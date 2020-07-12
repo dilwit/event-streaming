@@ -1,0 +1,24 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: rawEventConsumerGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer2
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer2
+      properties:
+        spring.json.trusted.packages: net.dilwit
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+kafka:
+  topic:
+    rawEvents: raw-events
+    enrichedEvents: enriched-events
+    errorEvents: error-events
+
+geoLocation:
+  dbFilePath: 'src/main/resources/geo-db/GeoLite2-City.mmdb'

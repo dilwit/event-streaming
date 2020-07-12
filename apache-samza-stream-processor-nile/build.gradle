@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'net.dilwit'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+version = "$SAMZA_VERSION"
+
+dependencies {
+    compile(group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.13')
+    compile(group: 'org.slf4j', name: 'slf4j-api', version: "$SLF4J_VERSION")
+    compile(group: 'org.slf4j', name: 'slf4j-log4j12', version: "$SLF4J_VERSION")
+    compile(group: 'org.apache.zookeeper', name: 'zookeeper', version: "$ZK_VERSION")
+    compile(group: 'org.apache.samza', name: 'samza-api', version: "$SAMZA_VERSION")
+    compile(group: 'org.apache.samza', name: 'samza-kv_2.11', version: "$SAMZA_VERSION")
+    compile(group: 'org.apache.samza', name: 'samza-kafka_2.11', version: "$SAMZA_VERSION")
+    compile(group: 'org.apache.samza', name: 'samza-core_2.11', version: "$SAMZA_VERSION")
+    compile(group: 'org.apache.kafka', name: 'kafka_2.11', version: "$KAFKA_VERSION")
+    compile(group: 'org.apache.samza', name: 'samza-kv-rocksdb_2.11', version: "$SAMZA_VERSION")
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile("com.google.code.gson:gson:2.7")
+
+    runtime(group: 'org.apache.samza', name: 'samza-shell', version: "$SAMZA_VERSION")
+    runtime(group: 'org.apache.samza', name: 'samza-yarn_2.11', version: "$SAMZA_VERSION")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+mainClassName = 'net.dilwit.samza.highlevelapi.ErrorEventsProcessorApplication'
